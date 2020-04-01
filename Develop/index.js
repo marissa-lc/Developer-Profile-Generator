@@ -2,6 +2,7 @@ const fs = require('fs');
 const inquirer = require("inquirer");
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
+const convertFactory = require("electron-html-to");
 
 
 function promptUser() {
@@ -179,8 +180,6 @@ function generateHTML(answers) {
                test html file
             </body>
             </html>`
-            
-            
               }
 
               promptUser().then(function(answers) {
@@ -193,5 +192,19 @@ function generateHTML(answers) {
             }).catch(function(err) {
                 console.log(err);
             });
+
+  const conversion = convertFactory({
+    converterPath: convertFactory.converters.PDF
+  });
+
+  conversion({html:htmlString}, function(err, result) {
+    if (err) {
+      return console.error(err);
+    }
+  console.log(result.numberOfPages);
+  console.log(result.logs);
+  result.stream.pipe(fs.createWriteStream('/path/to/anywhere.pdf'));
+  conversion.kill();
+});
             
       
