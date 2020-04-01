@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/marissa-lc/Developer-Profile-Generator/issues"
   },
-  "homepage": "https://github.com/marissa-lc/Developer-Profile-Generator#readme"
+  "homepage": "https://github.com/marissa-lc/Developer-Profile-Generator#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "electron": "^8.2.0",
+    "electron-html-to": "^2.6.0",
+    "inquirer": "^7.1.0",
+    "util": "^0.12.2"
+  }
 }
