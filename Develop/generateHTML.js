@@ -25,10 +25,7 @@ const colors = {
   }
 };
 
-function generateHTML2(data) {
-
-}
-function generateHTML(data) {
+function generateHTML(data, res, stars) {
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -177,7 +174,7 @@ function generateHTML(data) {
       </head>
 
       <body>
-         test html file
+         
       </body>
       </html>
       

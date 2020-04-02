@@ -38,31 +38,33 @@ function writeFile(fileName, data) {
 promptUser().then((data) => {
   const queryUrl = `https://api.github.com/users/${data.github}`;
   const starsUrl = `https://api.github.com/users/${data.github}/starred`;
-    axios.get(queryUrl).then((res) => {
-      axios.get(starsUrl).then((stars) => {
-        const html = generateHTML(data, res, stars);
-        writeFileAsync("github-portfolio.html", html);
-        readFileAsync("github-portfolio.html", "utf8").then(html);
-        
+
+  axios.get(queryUrl).then((res) => {
+    axios.get(starsUrl).then((stars) => {
+      const html = generateHTML(data, res, stars);
+
+      writeFileAsync("github-portfolio.html", html);
+    }).then(() => {
+      readFileAsync("github-portfolio.html", "utf8").then(html); {
+
         const conversion = convertFactory({
           converterPath: convertFactory.converters.PDF,
-          allowLocalFilesAccess: true
+          allowLocalFileAccess: true
         });
 
-      conversion({ html: html }, function(err, result) {
-        if(err) {
-          return console.error(err);
-        }
-
+            conversion({ html: html}, function(err, result) {
+            if(err) {
+            return console.error(err);
+      }
         console.log(result.numberOfPages);
         console.log(result.logs);
         result.stream.pipe(fs.createWriteStream('github-profile.pdf'));
         conversion.kill();
-    
-      })
-      })
-    })
+    });
+  }
 }).catch(function(err) {
   console.log(err)
 })
-      
+
+})
+});
