@@ -31,22 +31,17 @@ function promptUser() {
     ]);
 }
 
-function writeFile(fileName, data) {
-  writeFileAsync(fileName, data)
-}
-
 promptUser().then((data) => {
   const queryUrl = `https://api.github.com/users/${data.github}`;
   const starsUrl = `https://api.github.com/users/${data.github}/starred`;
 
   axios.get(queryUrl).then((res) => {
-    axios.get(starsUrl).then((stars) => {
-      const html = generateHTML(data, res, stars);
-
-      writeFileAsync("github-portfolio.html", html);
+  axios.get(starsUrl).then((stars) => {
+  
+      html = generateHTML(data, res, stars);
+    writeFileAsync("index.html", html);
     }).then(() => {
-      readFileAsync("github-portfolio.html", "utf8").then(html); {
-
+      readFileAsync("index.html", "utf8").then(html); {
         const conversion = convertFactory({
           converterPath: convertFactory.converters.PDF,
           allowLocalFileAccess: true
@@ -56,9 +51,9 @@ promptUser().then((data) => {
             if(err) {
             return console.error(err);
       }
-        console.log(result.numberOfPages);
         console.log(result.logs);
-        result.stream.pipe(fs.createWriteStream('github-profile.pdf'));
+        console.log(result.numberOfPages);
+        result.stream.pipe(fs.createWriteStream('github-portfolio.pdf'));
         conversion.kill();
     });
   }

@@ -18,8 +18,9 @@
   "homepage": "https://github.com/marissa-lc/Developer-Profile-Generator#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "electron": "^8.2.0",
+    "electron": "^5.0.13",
     "electron-html-to": "^2.6.0",
+    "electron-prebuilt": "^1.4.13",
     "inquirer": "^7.1.0",
     "util": "^0.12.2"
   }
