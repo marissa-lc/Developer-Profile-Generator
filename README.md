@@ -22,10 +22,6 @@ The PDF should have:
 * number of stars on github
 * number of user's following github account
 
-####  Technical problems
-
-* I was not able to make this app fully functional at the time, the pdf displays text rather than a proper pdf file, but you still receive an inquirer propmt when you enter node index.js and it still generates a pdf file of some sort
-
  [github](https://marissa-lc.github.io/Developer-Profile-Generator/) 
  
 
