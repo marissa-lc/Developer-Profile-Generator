@@ -22,6 +22,7 @@
     "electron-html-to": "^2.6.0",
     "electron-prebuilt": "^1.4.13",
     "inquirer": "^7.1.0",
+    "server": "^1.0.27",
     "util": "^0.12.2"
   }
 }

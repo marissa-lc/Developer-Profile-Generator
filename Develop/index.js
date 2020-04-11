@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 const inquirer = require("inquirer");
 const util = require("util");
 const convertFactory = require("electron-html-to");
@@ -32,34 +32,32 @@ function promptUser() {
 }
 
 promptUser().then((data) => {
-  const queryUrl = `https://api.github.com/users/${data.github}`;
-  const starsUrl = `https://api.github.com/users/${data.github}/starred`;
+  const queryUrl = `https://api.github.com/users/${data.username}`;
+  const starsUrl = `https://api.github.com/users/${data.username}/starred`;
 
   axios.get(queryUrl).then((res) => {
-  axios.get(starsUrl).then((stars) => {
-  
+    axios.get(starsUrl).then((stars) => {
       html = generateHTML(data, res, stars);
-    writeFileAsync("index.html", html);
+      writeFileAsync("index.html", html)
     }).then(() => {
-      readFileAsync("index.html", "utf8").then(html); {
+        readFileAsync("index.html", "utf8").then((html) => {
+        console.log(html);
         const conversion = convertFactory({
           converterPath: convertFactory.converters.PDF,
           allowLocalFileAccess: true
         });
-
-            conversion({ html: html}, function(err, result) {
+        conversion({ html: html}, function(err, result) {
             if(err) {
             return console.error(err);
-      }
+         }
         console.log(result.logs);
-        console.log(result.numberOfPages);
+        //console.log(result.numberOfPages);
         result.stream.pipe(fs.createWriteStream('github-portfolio.pdf'));
         conversion.kill();
-    });
-  }
-}).catch(function(err) {
-  console.log(err)
-})
-
-})
+      });
+   })  
+  //.catch((err) => {
+    //    console.log(err)
+ });
+});
 });
